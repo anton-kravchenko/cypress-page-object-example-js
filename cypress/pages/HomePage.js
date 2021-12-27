@@ -1,11 +1,13 @@
-import { By, Selector } from 'cypress-selectors';
+import { By } from 'cypress-selectors';
 import { LoginPage, NewArticlePage } from '.';
 
+class NavItem {
+  @By.Class('nav-item', { eq: 3 }) static userInfoNavItem;
+}
 class HomePageSelectors {
-  @By.Text.Exact('Sign in') static loginPageLink: Selector;
-  @By.Class('nav-item', { eq: 3 }) static userInfoNavItem: Selector;
-  @By.Type('a', { parent: HomePageSelectors.userInfoNavItem }) static userInfoLink: Selector;
-  @By.Text.Partial('New Article') static newArticleButton: Selector;
+  @By.Text.Exact('Sign in') static loginPageLink;
+  @By.Type('a', { parent: NavItem.userInfoNavItem }) static userInfoLink;
+  @By.Text.Partial('New Article') static newArticleButton;
 }
 
 class HomePage {
@@ -14,12 +16,12 @@ class HomePage {
     return this;
   }
 
-  goToLoginPage(): LoginPage {
+  goToLoginPage() {
     HomePageSelectors.loginPageLink.click();
     return new LoginPage();
   }
 
-  goToNewArticlePage(): NewArticlePage {
+  goToNewArticlePage() {
     HomePageSelectors.newArticleButton.click();
     return new NewArticlePage();
   }

@@ -13,7 +13,7 @@ context('General flows', () => {
       .goToLoginPage()
       .login();
 
-    HomePageSelectors.userInfoLink.should('have.text', 'cypress-test-user');
+    HomePageSelectors.userInfoLink.should('have.text', 'testuser');
   });
 
   it('should post a new article', () => {
